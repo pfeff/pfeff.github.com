@@ -3,7 +3,7 @@ layout: post
 title: "Building with Leiningen"
 description: ""
 category: 
-tags: []
+tags: [clojure, leiningen]
 ---
 {% include JB/setup %}
 
