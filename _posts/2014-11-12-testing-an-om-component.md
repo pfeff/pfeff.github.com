@@ -57,16 +57,16 @@ execution.
 To make leiningen replace the :runner keyword with the path to the provided
 script, add clojurescript.test to to your plugins vector.
 
-  :plugins [[lein-cljsbuild "1.0.4-SNAPSHOT"]
-            [com.cemerick/clojurescript.test "0.3.1"]
-            [lein-npm "0.4.0"]]
+      :plugins [[lein-cljsbuild "1.0.4-SNAPSHOT"]
+                [com.cemerick/clojurescript.test "0.3.1"]
+                [lein-npm "0.4.0"]]
 
 You''ll notice that we also have lein-npm included in our plugins
 configuration.  This allows us to include node.js dependencies in our project.
 This allows us to include slimerjs in our project with just the following
 configuration.
 
-  :node-dependencies [[slimerjs "0.9.2"]]
+    :node-dependencies [[slimerjs "0.9.2"]]
 
 With all of this in place, we now have a self contained build capable of
 testing our application.
