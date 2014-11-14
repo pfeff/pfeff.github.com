@@ -14,7 +14,7 @@ ahead and did that for you and this is what I found.
 
 Om tests fall in the category of integration tests.  Your tests are dependent
 on a third party API (Om) and a complex runtime environment (a browser).  This
-means that there''s going to be a non-trivial amount of setup.  By the end of
+means that there's going to be a non-trivial amount of setup.  By the end of
 this post, you should have:
 
 1. Configured Leiningen to build/execute your tests
@@ -22,7 +22,7 @@ this post, you should have:
 3. Some utilities for creating DOM nodes in which to run the tests
 4. Some examples on which to base further work.
 
-We''re going to use the test functionality built into cljsbuild to run our
+We're going to use the test functionality built into cljsbuild to run our
 tests.  This means adding a new map to the build vector to define how the test
 code is built:
 
@@ -35,10 +35,10 @@ code is built:
                  :externs ["react/externs/react.js"]
                  :optimizations :whitespace } }
 
-If you''re familiar with building clojurescript already, this should be pretty
+If you're familiar with building clojurescript already, this should be pretty
 familiar.  The test code and the app code are being compiled into a single
 javascript file named unit-test.js.  Since Om relies on the react library,
-we''re telling cljsbuild to include the react source in the generated
+we're telling cljsbuild to include the react source in the generated
 javascript file.
 
 Next, we need to add the test configuration itself:
@@ -61,7 +61,7 @@ script, add clojurescript.test to to your plugins vector.
                 [com.cemerick/clojurescript.test "0.3.1"]
                 [lein-npm "0.4.0"]]
 
-You''ll notice that we also have lein-npm included in our plugins
+You'll notice that we also have lein-npm included in our plugins
 configuration.  This allows us to include node.js dependencies in our project.
 This allows us to include slimerjs in our project with just the following
 configuration.
