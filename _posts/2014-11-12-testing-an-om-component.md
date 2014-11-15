@@ -70,3 +70,57 @@ configuration.
 
 With all of this in place, we now have a self contained build capable of
 testing our application.
+
+In order to test an Om component, we'll need a little bit of DOM in which to
+mount that component.  Specifically, we're going create a uniquely named div
+and append it to the document body. We'll use Prismatic's Dommy for this.
+
+The container's id:
+
+    (defn new-id 
+      ([]
+       (str "container-" (gensym)))
+      ([id]
+       (str "container-" id)))
+
+The div:
+
+    (defn new-node [id]
+      (-> (dommy/create-element "div")
+          (dommy/set-attr! "id" id)))
+
+And append it to the body:
+
+    (defn append-node [node]
+      (dommy/append! (sel1 js/document :body) node))
+
+Finally, a utility to wrap this all up:
+
+    (defn container!
+      ([]
+       (container! (new-id)))
+      ([id]
+       (-> id
+           new-node
+           append-node)))
+
+Here's a usage example:
+
+    (deftest test-container
+      (let [c (container! "container-1")]
+        (is (sel1 :#container-1))))
+
+This code instantiates a container providing an ID.  This is useful for
+testing, but you'll typically want to use the no-arg version that generates a
+unique ID.
+
+Now, here's the test case that's going to drive the first bit of implementation:
+
+    (deftest video-element
+      (let [c (container!)]
+        (om/root core/video {} {:target c})
+        (is (sel1 :video))))
+
+This creates the container as described above, instantiates an Om component
+(which we'll write shortly) named video, and asserts that the video element
+exists in the page.
