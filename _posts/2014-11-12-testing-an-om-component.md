@@ -124,3 +124,17 @@ Now, here's the test case that's going to drive the first bit of implementation:
 This creates the container as described above, instantiates an Om component
 (which we'll write shortly) named video, and asserts that the video element
 exists in the page.
+
+This test will fail, because we haven't defined our video component.  This
+component just renders an empty video element by implementing the IRender
+protocol.
+
+    (defn video [data owner]
+      (reify
+        om/IRender
+        (render [this]
+          (dom/video nil nil))))
+
+This should be sufficient to make our tests pass, but it's not all that
+interesting.  In the next post, I'll test drive an interactive component.
+
