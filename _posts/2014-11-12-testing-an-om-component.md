@@ -7,7 +7,7 @@ This post is a quick tutorial on testing an Om component.  I assume you know
 what Om and clojurescript are.  I extracted this piece from a larger work in
 progress which will hopefully be available soon.
 
-If you go the the GitHub project page for Om, you will find a small section on
+If you go the GitHub project page for Om, you will find a small section on
 testing Om components.  This is basically just a pointer to a project built on
 Om, and the implied message is that you should read the source.  Well, I went
 ahead and did that for you and this is what I found.
@@ -21,6 +21,9 @@ this post, you should have:
 2. A headless browser environment (slimerjs)
 3. Some utilities for creating DOM nodes in which to run the tests
 4. Some examples on which to base further work.
+
+Basic Setup
+-----------
 
 We're going to use the test functionality built into cljsbuild to run our
 tests.  This means adding a new map to the build vector to define how the test
@@ -71,6 +74,9 @@ configuration.
 With all of this in place, we now have a self contained build capable of
 testing our application.
 
+Some Utilities for Generating DOM
+---------------------------------
+
 In order to test an Om component, we'll need a little bit of DOM in which to
 mount that component.  Specifically, we're going create a uniquely named div
 and append it to the document body. We'll use Prismatic's Dommy for this.
@@ -114,6 +120,9 @@ This code instantiates a container providing an ID.  This is useful for
 testing, but you'll typically want to use the no-arg version that generates a
 unique ID.
 
+The Test Case
+-------------
+
 Now, here's the test case that's going to drive the first bit of implementation:
 
     (deftest video-element
@@ -124,6 +133,9 @@ Now, here's the test case that's going to drive the first bit of implementation:
 This creates the container as described above, instantiates an Om component
 (which we'll write shortly) named video, and asserts that the video element
 exists in the page.
+
+The Implementation
+------------------
 
 This test will fail, because we haven't defined our video component.  This
 component just renders an empty video element by implementing the IRender
