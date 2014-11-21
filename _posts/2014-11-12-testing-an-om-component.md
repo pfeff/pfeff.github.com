@@ -29,18 +29,20 @@ We're going to use the test functionality built into cljsbuild to run our
 tests.  This means adding a new map to the build vector to define how the test
 code is built:
 
-     {:id "tests"
-      :source-paths ["src-cljs" "test-cljs"]
-      :compiler {:pretty-print true
-                 :output-dir "resources/private/js"
-                 :output-to "resources/private/js/unit-test.js"
-                 :preamble ["react/react.js"]
-                 :externs ["react/externs/react.js"]
-                 :optimizations :whitespace } }
+{% highlight clojure %}
+    {:id "tests"
+     :source-paths ["src-cljs" "test-cljs"]
+     :compiler {:pretty-print true
+                :output-dir "resources/private/js"
+                :output-to "resources/private/js/unit-test.js"
+                :preamble ["react/react.js"]
+                :externs ["react/externs/react.js"]
+                :optimizations :whitespace } }
+{% endhighlight %}
 
 If you're familiar with building clojurescript already, this should be pretty
 familiar.  The test code and the app code are being compiled into a single
-javascript file named unit-test.js.  Since Om relies on the react library,
+javascript file named `unit-test.js`.  Since Om relies on the react library,
 we're telling cljsbuild to include the react source in the generated
 javascript file.
 
@@ -149,4 +151,6 @@ protocol.
 
 This should be sufficient to make our tests pass, but it's not all that
 interesting.  In the next post, I'll test drive an interactive component.
+
+{% include email.html %}
 
