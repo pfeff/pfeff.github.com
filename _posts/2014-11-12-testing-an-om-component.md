@@ -4,13 +4,13 @@ title: Testing an Om component
 ---
 
 This post is a quick tutorial on testing an Om component.  I assume you know
-what Om and clojurescript are.  I extracted this piece from a larger work in
-progress which will hopefully be available soon.
+what Om and clojurescript are.  I extracted this piece from a larger
+work-in-progress which will hopefully be available soon.
 
-If you go the GitHub project page for Om, you will find a small section on
+If you go to the GitHub project page for Om, you will find a small section on
 testing Om components.  This is basically just a pointer to a project built on
 Om, and the implied message is that you should read the source.  Well, I went
-ahead and did that for you and this is what I found.
+ahead and did that for you, and this is what I found.
 
 Om tests fall in the category of integration tests.  Your tests are dependent
 on a third party API (Om) and a complex runtime environment (a browser).  This
@@ -66,10 +66,9 @@ script, add clojurescript.test to to your plugins vector.
                 [com.cemerick/clojurescript.test "0.3.1"]
                 [lein-npm "0.4.0"]]
 
-You'll notice that we also have lein-npm included in our plugins
-configuration.  This allows us to include node.js dependencies in our project.
-This allows us to include slimerjs in our project with just the following
-configuration.
+You'll notice that we also have lein-npm included in our plugins configuration.
+This allows us to include node.js dependencies in our project.  Specifically,
+we include slimerjs in our project with just the following configuration.
 
     :node-dependencies [[slimerjs "0.9.2"]]
 
@@ -83,7 +82,8 @@ In order to test an Om component, we'll need a little bit of DOM in which to
 mount that component.  Specifically, we're going create a uniquely named div
 and append it to the document body. We'll use Prismatic's Dommy for this.
 
-The container's id:
+This utility generates a unique ID which we'll use to identify the container.
+The overloaded form is simply for testing.
 
     (defn new-id 
       ([]
@@ -91,18 +91,19 @@ The container's id:
       ([id]
        (str "container-" id)))
 
-The div:
+The container itself is just a div.  The parameter is used as the div's ID
+attribute.
 
     (defn new-node [id]
       (-> (dommy/create-element "div")
           (dommy/set-attr! "id" id)))
 
-And append it to the body:
+This function will append the node to the document body.
 
     (defn append-node [node]
       (dommy/append! (sel1 js/document :body) node))
 
-Finally, a utility to wrap this all up:
+Finally, a utility to generate uniquely named container div within the page:
 
     (defn container!
       ([]
@@ -136,12 +137,13 @@ This creates the container as described above, instantiates an Om component
 (which we'll write shortly) named video, and asserts that the video element
 exists in the page.
 
+This test will fail, because we haven't defined our video component.
+
 The Implementation
 ------------------
 
-This test will fail, because we haven't defined our video component.  This
-component just renders an empty video element by implementing the IRender
-protocol.
+Here's the implementation we'll use to make this test pass.  This component
+just renders an empty video element by implementing the IRender protocol.
 
     (defn video [data owner]
       (reify
