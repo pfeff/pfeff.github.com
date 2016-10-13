@@ -16,14 +16,14 @@ This is what I came up with.
 1. Create a plain JavaScript file named index.js.  Set it as your entry.
 2. In index.js, load your Elm app:
 
-    ```JavaScript
-    var Elm = require( '../elm/Main' ); //Elm files are in a sibling folder
+    {% highlight javascript %}
+    var Elm = require( '../elm/Main' ); //Elm files in a sibling folder
     Elm.Main.embed( document.getElementById( 'main' ) );
-    ```
+    {% endhighlight %}
 
 3. Add the HtmlWebpackPlugin to your plugins array:
 
-    ```JavaScript
+    {% highlight javascript %}
     plugins: [
         new HtmlWebpackPlugin({
             template: './path/to/index.html',
@@ -31,7 +31,7 @@ This is what I came up with.
             filename: 'dist/index.html'
         })
     ]
-    ```
+    {% endhighlight %}
 
 When you run Webpack, it'll inject the bundle (including index.js) into index.html.
 
