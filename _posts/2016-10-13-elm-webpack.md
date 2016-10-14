@@ -35,3 +35,4 @@ This is what I came up with.
 
 When you run Webpack, it'll inject the bundle (including index.js) into index.html.
 
+{% include email.html %}
