@@ -89,6 +89,6 @@ So, to go from our Elm type Foo to JSON, we'll define these functions:
         case baz of
             Baz -> string "Baz"
             Quux -> string "Quux"
-    {% highlight elm %}
+    {% endhighlight %}
 
 As I mentioned yesterday, this solution has some unfortunate boilerplate, but it has no magic.
