@@ -3,7 +3,7 @@ layout: post
 title: Elm Interop - Using a JavaScript Library
 ---
 
-Motivation: I'm writing an Elm app, but I want to use Auth0's JavaScript library.
+Motivation: I'm writing an Elm app, but I want to use [Auth0's](https://auth0.com/) [JavaScript library.](https://auth0.com/docs/libraries/lock)
 
 Elm does support JavaScript interop.
 It's even [documented](https://guide.elm-lang.org/interop/javascript.html)!
@@ -34,7 +34,7 @@ The important bit here is that my Elm app is available as the elmApp parameter.
 Per the Elm documentation, I can now call `send` and `subscribe` on port functions.
 In this case, when my Elm app calls the `login` function I call Auth0's `lock.show()`.
 Further, when Auth0 returns the profile object, I can `send` that object to my Elm app.
-See the Auth0 docs for info on how to use the Auth0Lock API.
+[See the Auth0 docs for info on how to use the Auth0 Lock API.](https://auth0.com/docs/libraries/lock)
 
     {% highlight javascript %}
     export default function app(elmApp) {
