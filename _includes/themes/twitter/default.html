@@ -68,5 +68,19 @@
     </div> <!-- /container -->
 
     {% include JB/analytics %}
+    <script async src="/assets/javascript/autotrack.js"></script>
+    <script>
+        window.ga=window.ga||function(){(ga.q=ga.q||[]).push(arguments)};ga.l=+new Date;
+        ga('create', 'UA-XXXXX-Y', 'auto');
+
+        // Replace the following lines with the plugins you want to use.
+        /*ga('require', 'eventTracker');*/
+        /*ga('require', 'outboundLinkTracker');*/
+        /*ga('require', 'urlChangeTracker');*/
+        ga('require', 'outboundFormTracker');
+        // ...
+
+        ga('send', 'pageview');
+    </script>
   </body>
 </html>
