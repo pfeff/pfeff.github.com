@@ -5,6 +5,7 @@
 <div class="row">
   <div class="span8">
     {{ content }}
+    {% include email.html %}
     <hr>
     <div class="pagination">
       <ul>
@@ -26,8 +27,43 @@
   </div>
   
   <div class="span4">
-    <h4>Published</h4>
-    <div class="date"><span>{{ page.date | date_to_long_string }}</span></div>
+      <h4>Welcome!</h4>
+      <div class="row">
+          <div class="span3">
+          Sign up for my email newsletter because there's more helpful content on the way.
+          </div>
+      </div>
+
+      <div class="row">
+          <div class="span3">
+              <form action="http://mbpfefferle.us9.list-manage2.com/subscribe/post" method="POST">
+                  <fieldset>
+                      <input type="hidden" name="u" value="cc50cac2fedac730b15dbf2b4">
+                      <input type="hidden" name="id" value="c43031b875">
+                      <div id="mergeTable" class="mergeTable">
+                          <div class="mergeRow dojoDndItem mergeRow-email" id="mergeRow-0">
+                              <label for="MERGE0">Email Address <span class="req asterisk">*</span></label>
+                              <div class="field-group">
+                                  <input type="email" autocapitalize="off" autocorrect="off" name="MERGE0" id="MERGE0" size="25" value="">
+                              </div>
+                          </div>
+                          <div class="mergeRow dojoDndItem mergeRow-text" id="mergeRow-1">
+                              <label for="MERGE1">First Name</label>
+                              <div class="field-group">
+                                  <input type="text" name="MERGE1" id="MERGE1" size="25" value="">
+                              </div>
+                          </div>
+                      </div>
+                      <div class="submit_container clear">
+                          <input type="submit" class="button" name="submit" value="Keep me informed">
+                      </div>
+                  </fieldset>
+              </form>
+          </div>
+      </div>
+
+      <h4>Published</h4>
+      <div class="date"><span>{{ page.date | date_to_long_string }}</span></div>
 
   {% unless page.tags == empty %}
     <h4>Tags</h4>
